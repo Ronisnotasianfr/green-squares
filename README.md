@@ -1,10 +1,13 @@
 # green-squares
 
-Automated daily commits to keep the GitHub contribution graph green.
+Automated commits at random times to keep the GitHub contribution graph green.
 
 ## How it works
 
-A GitHub Actions workflow runs daily, updates a log file with the current date, and commits the change. A random delay is added so commits happen at different times each day.
+A GitHub Actions workflow runs every hour. A Python script (`commit.py`) picks
+3–5 random days per week to commit, generates 3–15 commits on those days, and
+sleeps a random amount before each commit so timestamps land at random minutes
+throughout the day.
 
 ## Setup
 
@@ -14,4 +17,6 @@ A GitHub Actions workflow runs daily, updates a log file with the current date, 
 
 ## Customization
 
-Edit `.github/workflows/daily-commit.yml` to change the schedule or commit message format.
+- `.github/workflows/activity.yml` — schedule and git identity
+- `commit.py` — quotes, commit messages, and randomization logic
+- `.commit_tracker.json` — per-day and per-week commit tracking (auto-generated)
